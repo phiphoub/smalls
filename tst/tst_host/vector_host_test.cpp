@@ -1,5 +1,4 @@
 #include "inc/vector.h"
-#include "tst/cuda_types_utils.h"
 #include "gtest/gtest.h"
 
 using namespace smalls;
@@ -349,7 +348,6 @@ protected:
     MatrixT1 m_matrix1;
     MatrixT2 m_matrix2;
     Vector<3, float> m_saveRes;
-    float3 m_saveRes2;
 };
 
 TEST_F(MatrixTest, transpose_size)
@@ -423,29 +421,5 @@ TEST_F(MatrixTest, cast)
     // Check that the first and last elements are actually equal.
     EXPECT_EQ(static_cast<CastType>(m_matrix1.at(0, 0)), matrixCast.at(0, 0));
     EXPECT_EQ(static_cast<CastType>(m_matrix1.at(1, 2)), matrixCast.at(1, 2));
-}
-
-size_t NUM_ITER = 1000000;
-
-TEST_F(MatrixTest, CUtils_Plus)
-{
-    auto result = make_float3(0.0f, 0.0f, 0.0f);
-    for(size_t i = 0; i < NUM_ITER; ++i)
-    {
-        auto add = make_float3(1.0f, 1.0f, 1.0f);
-        result += add;
-    }
-    m_saveRes2 = result;
-}
-
-TEST_F(MatrixTest, Vector_plus)
-{
-    auto result = make_vector<float>(0.0f, 0.0f, 0.0f);
-    for(size_t i = 0; i < NUM_ITER; ++i)
-    {
-        auto add = make_vector<float>(1.0f, 1.0f, 1.0f);
-        result += add;
-    }
-    m_saveRes = result;
 }
 }
