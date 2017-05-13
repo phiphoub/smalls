@@ -1,16 +1,14 @@
-cmake_minimum_required(VERSION 2.8.0)
+cmake_minimum_required(VERSION 3.0.2)
 
-# Set the name of the project to DragonFly
+# Set the name of the project to smalls
 project(smalls)
-
-include_directories(${CMAKE_SOURCE_DIR})
-include_directories(${CMAKE_SOURCE_DIR}/googletest/include/)
-message("You need to pull googletest here: " ${CMAKE_SOURCE_DIR})
 
 # Setup the variables for CUDA
 
 # CUDA Toolkit 7.0 and up is required as it is the first release officially supporting c++11.
 set(CUDA_TOOLKIT_MINIMUM_VERSION "7.0")
+
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread")
 
 find_package(CUDA REQUIRED)
 
@@ -24,9 +22,9 @@ endif("${CUDA_VERSION_MAJOR}.${CUDA_VERSION_MINOR}" LESS ${CUDA_TOOLKIT_MINIMUM_
 
 set(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS}; --keep)
 
-include_directories(${CUDA_INCLUDE_DIRS})
 
+find_package(GTest REQUIRED)
 
-add_subdirectory(googletest)
-add_subdirectory(inc)
+include_directories(${CMAKE_SOURCE_DIR} ${CUDA_INCLUDE_DIRS} ${GTEST_INCLUDE_DIRS})
+
 add_subdirectory(tst)

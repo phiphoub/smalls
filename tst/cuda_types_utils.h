@@ -1,5 +1,5 @@
 ///------------------------------------------------------------------------------------------------
-/// @brief pbouttefroy - 20150714 - This is directly pulled from CudaVec.h available at:
+/// @brief This is directly pulled from CudaVec.h available at:
 ///        https://code.google.com/p/cudavec/source/browse/trunk/CudaVec.h.
 ///------------------------------------------------------------------------------------------------
 
