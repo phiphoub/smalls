@@ -22,8 +22,7 @@ endif("${CUDA_VERSION_MAJOR}.${CUDA_VERSION_MINOR}" LESS ${CUDA_TOOLKIT_MINIMUM_
 
 set(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS}; --keep)
 
-
-find_package(GTest REQUIRED)
+add_subdirectory(ext/googletest)
 
 include_directories(${CMAKE_SOURCE_DIR} ${CUDA_INCLUDE_DIRS} ${GTEST_INCLUDE_DIRS})
 
